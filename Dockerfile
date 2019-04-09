@@ -1,12 +1,12 @@
-FROM alpine:3.4
+FROM alpine
 
-ENV type	supernode
-ENV listenport 61099
+ENV type supernode
+ENV listenport 10088
 ENV devicename n2n0
-ENV interfaceaddress 10.9.9.1
-ENV communityname n2nnet
-ENV Encryptionkey mypass
-ENV supernodenet 192.168.3.108:61099
+ENV interfaceaddress dhcp:0.0.0.0
+ENV communityname foreign
+ENV Encryptionkey nopass
+ENV supernodenet foreign.v2s.n2n.zctmdc.cc:7963 
 ENV OPTIONS	""
 
 RUN buildDeps=" \
@@ -17,8 +17,12 @@ RUN buildDeps=" \
                 openssl-dev \
         "; \
         set -x \
-        && apk add --update openssl \
-        && apk add $buildDeps \
+        && apk update  \
+        && apk upgrade \
+        && apk add --no-cache\
+        dhclient \
+        openssl \
+        $buildDeps \
         && mkdir -p /usr/src \
         && cd /usr/src \
         && git clone https://github.com/meyerd/n2n \
@@ -30,8 +34,8 @@ RUN buildDeps=" \
         && apk del $buildDeps \
         && rm -rf /var/cache/apk/*
 
-COPY entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+ADD entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
 
-ENTRYPOINT ["/entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 
