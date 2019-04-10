@@ -19,8 +19,7 @@ RUN buildDeps=" \
         set -x \
         && apk update  \
         && apk upgrade \
-        && apk add --no-cache\
-        dhclient \
+        && apk add --no-cache \
         openssl \
         $buildDeps \
         && mkdir -p /usr/src \
