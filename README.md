@@ -17,14 +17,14 @@ docker run --rm -ti -p 10088:10088/udp -e tpye=supernode zctmdc/n2nv2s
      
 ```
 docker run -d \
-	--name n2n_supernode
+	--name n2n_supernode \
 	--restart=always \
 	-p 10088:10088/udp \
 	--name n2n_supernode \
 	-e tpye=supernode \
 	-e listenport=10088 \
-	-e OPTIONS=""
-	zctmdc/n2nv2s
+	-e OPTIONS="" \
+	zctmdc/n2nv2s \
 ```
 
  
@@ -48,7 +48,7 @@ docker run  -d \
 	-e Encryptionkey=nopass \
 	-e supernodenet=foreign.v2s.n2n.zctmdc.cc:7963 \
 	-e OPTIONS="-f -b -v" \
-	zctmdc/n2nv2s
+	zctmdc/n2nv2s \
 ```          
 ## DHCP 动态自动获取IP模式 
 >你得先打开一个静态模式的节点，并且打设置好DHCPD服务
@@ -65,7 +65,7 @@ docker run  -d \
 	-e Encryptionkey=nopass \
 	-e supernodenet=foreign.v2s.n2n.zctmdc.cc:7963 \
 	-e OPTIONS="-f -r -b" \
-	zctmdc/n2nv2s
+	zctmdc/n2nv2s \
 ```     
 ## DEMO  演示
 ### node n2n_edge_01 IP 10.9.9.1
