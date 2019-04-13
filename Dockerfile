@@ -36,4 +36,6 @@ RUN buildDeps=" \
 
 ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 RUN chmod +x /usr/local/bin/entrypoint.sh
+ADD run_tests.sh /tmp/run_tests.sh
+RUN chmod +x /tmp/run_tests.sh
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
