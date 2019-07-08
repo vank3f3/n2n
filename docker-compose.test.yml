@@ -1,13 +1,13 @@
 n2nv2sSupernode:
-  build: 
+  build:
     context: docker-compose-test
     dockerfile: Dockerfile.test
     expose: 10088
-  command:  /tmp/run_tests_supernode.sh
+  command: /tmp/run_tests_supernode.sh
 sut:
-  build: 
+  build:
     context: docker-compose-test
     dockerfile: Dockerfile.test
   links:
     - n2nv2sSupernode
-  command:  /tmp/run_tests_edgenode.sh
+  command: /tmp/run_tests_edgenode.sh

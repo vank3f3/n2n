@@ -10,11 +10,11 @@ ENV supernodenet foreign.v2s.n2n.zctmdc.cc:7963
 ENV OPTIONS	""
 
 RUN buildDeps=" \
-                build-base \
-                cmake \
-                git \
-                linux-headers \
-                openssl-dev \
+        build-base \
+        cmake \
+        git \
+        linux-headers \
+        openssl-dev \
         "; \
         set -x \
         && apk update  \

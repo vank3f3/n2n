@@ -33,8 +33,8 @@ RUN buildDeps=" \
         && rm -fr /usr/src/n2n \
         && apk del $buildDeps \
         && rm -rf /var/cache/apk/*
-ADD /run_tests_supernode.sh /tmp/run_tests_supernode.sh
-ADD /run_tests_edgenode.sh /tmp/run_tests_edgenode.sh
+ADD run_tests_supernode.sh /tmp/run_tests_supernode.sh
+ADD run_tests_edgenode.sh /tmp/run_tests_edgenode.sh
 RUN chmod +x /tmp/run_tests_supernode.sh
 RUN chmod +x /tmp/run_tests_edgenode.sh
 ENTRYPOINT ["/tmp/run_tests_edgenode.sh"]
