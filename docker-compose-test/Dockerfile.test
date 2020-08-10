@@ -10,11 +10,11 @@ ENV supernodenet foreign.v2s.n2n.zctmdc.cc:7963
 ENV OPTIONS	""
 
 RUN buildDeps=" \
-        build-base \
-        cmake \
-        git \
-        linux-headers \
-        openssl-dev \
+                build-base \
+                cmake \
+                git \
+                linux-headers \
+                openssl-dev \
         "; \
         set -x \
         && apk update  \
@@ -33,7 +33,8 @@ RUN buildDeps=" \
         && rm -fr /usr/src/n2n \
         && apk del $buildDeps \
         && rm -rf /var/cache/apk/*
-
-ADD entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+ADD run_tests_supernode.sh /tmp/run_tests_supernode.sh
+ADD run_tests_edgenode.sh /tmp/run_tests_edgenode.sh
+RUN chmod +x /tmp/run_tests_supernode.sh
+RUN chmod +x /tmp/run_tests_edgenode.sh
+ENTRYPOINT ["/tmp/run_tests_edgenode.sh"]
